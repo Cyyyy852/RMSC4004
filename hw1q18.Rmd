@@ -1,0 +1,47 @@
+---
+title: "RMSC4004 Q18"
+author: "Chan Sze Yuen Syngiene 1155127616"
+date: "02/04/2021"
+output:
+  pdf_document: default
+  html_document:
+    df_print: paged
+  word_document: default
+---
+## 18
+
+We use the following R code for ploting the histograms:
+```{r}
+data=read.csv("D:/CUHKZOOMNOTESANDSOURCE/RMSC4004/AUTOBIsim.csv") #load the data
+head(data) #check whether the data is loaded sucessfully
+dataCSEX1=data[data[,"CLMSEX"]==1,] #extract data with "CLMSEX"=1
+head(dataCSEX1) #checking
+dataCSEX2=data[data[,"CLMSEX"]==2,] #extract data with "CLMSEX"=2
+head(dataCSEX2) #checking
+p1=hist(dataCSEX1$LOSS,breaks=100,col="blue",xlab="LOSS")
+p2=hist(dataCSEX2$LOSS,breaks=100,col="red")
+```
+```{r}
+plot(p1,col="blue",xlab="LOSS",main="Histogram of LOSS with different CLMSEX")
+plot(p2,col="red",add=T)
+legend("topright", c("CLMSEX=1", "CLMSEX=2"), fill=c("blue", "red"))
+```
+From the plot we can see these two loss distribution have the same distribution with very likely to be exponential distribution, however the loss with CLMSEX=1 one seems having larger tail than the loss with CLMSEX=2 one since most of the extreme value of loss belongs to CLMSEX=1 one. So the answer is they are different (should use two different exponential to model).
+
+For the Histograms of LOSS and different SEATBELT:
+```{r}
+data=read.csv("D:/CUHKZOOMNOTESANDSOURCE/RMSC4004/AUTOBIsim.csv") #load the data
+head(data) #check whether the data is loaded sucessfully
+dataSEATBELT1=data[data[,"SEATBELT"]==1,] #extract data with "SEATBELT"=1
+head(dataSEATBELT1) #checking
+dataSEATBELT2=data[data[,"SEATBELT"]==2,] #extract data with "SEATBELT"=2
+head(dataSEATBELT2) #checking
+p1=hist(dataSEATBELT1$LOSS,breaks=100,col="blue")
+p2=hist(dataSEATBELT2$LOSS,breaks=100,col="red")
+```
+```{r}
+plot(p1,col="blue",xlab="LOSS",main="Histogram of LOSS with different SEATBELT")
+plot(p2,col="red",add=T)
+legend("topright", c("SEATBELT=1", "SEATBELT=2"), fill=c("blue", "red"))
+```
+From the plot we can see these two loss distribution have the same distribution with very likely to be exponential distribution again. However, although the frequency of loss belongs to SEATBELT=2 is very low compared to the loss with SEATBELT=1 one, in this case the loss with SEATBELT=2 one seems having larger tail than the loss with SEATBELT=1 one since most of the extreme value of loss belongs to SEATBELT=1 one.
